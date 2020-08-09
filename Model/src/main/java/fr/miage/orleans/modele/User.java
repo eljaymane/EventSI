@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
@@ -15,13 +16,16 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String username;
-    @ManyToOne() @JoinColumn(name = "id")
+    @ManyToOne() @JoinColumn(name = "id", referencedColumnName = "countryId")
     private Country country;
     private String firstName;
     private String lastName;
     @Pattern(regexp="(^$|[0-9]{10})")
     @NotBlank
     private String phoneNumber;
+    @OneToOne()
+    @JoinColumn(name ="id", referencedColumnName = "rankId")
+    private Rank rank;
 
 
     public User() {
@@ -113,6 +117,32 @@ public class User {
         this.phoneNumber = phoneNumber;
         return this;
     }
+
+
+    public User(long id, String username, Country country, String firstName, String lastName, String phoneNumber, Rank rank) {
+        this.id = id;
+        this.username = username;
+        this.country = country;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.rank = rank;
+    }
+
+    public Rank getRank() {
+        return this.rank;
+    }
+
+    public void setRank(Rank rank) {
+        this.rank = rank;
+    }
+
+    public User rank(Rank rank) {
+        this.rank = rank;
+        return this;
+    }
+
+
 
     
 
