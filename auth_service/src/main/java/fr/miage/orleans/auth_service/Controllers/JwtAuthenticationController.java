@@ -1,11 +1,13 @@
 package fr.miage.orleans.auth_service.Controllers;
 
 
-import fr.miage.orleans.auth_service.DTO.UserDTO;
+
 import fr.miage.orleans.auth_service.JwtRequest;
 import fr.miage.orleans.auth_service.JwtResponse;
 import fr.miage.orleans.auth_service.JwtTokenUtil;
 import fr.miage.orleans.auth_service.JwtUserDetailsService;
+import fr.miage.orleans.auth_service.DTO.UserDTO;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -45,7 +47,7 @@ public class JwtAuthenticationController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public ResponseEntity<?> saveUser(@RequestBody UserDTO user) throws Exception {
+	public ResponseEntity<?> saveUser(@RequestBody UserDTO user) throws Exception {
         return ResponseEntity.ok(userDetailsService.save(user));
     }
 
