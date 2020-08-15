@@ -16,7 +16,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String username;
-    @ManyToOne() @JoinColumn(name = "id", referencedColumnName = "countryId")
+    @ManyToOne() @JoinColumn(name = "countryId", referencedColumnName = "id")
     private Country country;
     private String firstName;
     private String lastName;

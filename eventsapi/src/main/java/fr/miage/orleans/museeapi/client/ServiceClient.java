@@ -48,13 +48,13 @@ public class ServiceClient implements IServiceClient {
     }
 
     public ServiceClient() {
-        if(token == "") {
+       /* if(token == "") {
             try {
                 token = authenticate();
             } catch (JsonProcessingException e) {
                 e.printStackTrace();
             }
-        }
+        }*/
     }
 
 }

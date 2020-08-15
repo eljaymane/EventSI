@@ -9,7 +9,7 @@ public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToMany @JoinColumn(name = "id")
+    @OneToOne() @JoinColumn(name = "id")
     private User user;
     private String eventName;
     private Date dateStart;

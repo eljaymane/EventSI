@@ -18,6 +18,10 @@ public class JwtUserDetailsService implements UserDetailsService {
 
 
     private ServiceClient client = ClientSingleton.getInstance();
+    
+    public JwtUserDetailsService() {
+    	
+    }
 
     @Override
 public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

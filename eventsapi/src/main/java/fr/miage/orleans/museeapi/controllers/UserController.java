@@ -27,7 +27,7 @@ public class UserController {
 
     @PostMapping("/addUser")
     public ResponseEntity<User> createUser(@RequestBody User user){
-        List<User> existingUser = UserRepository.findByUsername(user.getUsername());
+        List<User> existingUser = userRepository.findByUsername(user.getUsername());
 
         if(existingUser.size() > 0) {
             return new ResponseEntity<User>((User)null,HttpStatus.CONFLICT);

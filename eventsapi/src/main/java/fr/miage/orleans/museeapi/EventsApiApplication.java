@@ -11,10 +11,10 @@ import org.springframework.context.annotation.Configuration;
 //@EnableDiscoveryClient
 @SpringBootApplication
 @EntityScan("fr.miage.orleans.modele")
-public class MuseeapiApplication {
+public class EventsApiApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(MuseeapiApplication.class, args);
+        SpringApplication.run(EventsApiApplication.class, args);
     }
 
 }

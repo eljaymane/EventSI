@@ -5,6 +5,8 @@ import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+
+import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -29,7 +31,7 @@ public class User {
             name="user_role",
             joinColumns={@JoinColumn(name="USER_ID", referencedColumnName="ID")},
             inverseJoinColumns={@JoinColumn(name="ROLE_ID", referencedColumnName="ID")})
-    private List<Role> roles;
+    private Collection<Role> roles;
 
     public User() {
     }
@@ -50,7 +52,7 @@ public class User {
         this.email = email;
     }
 
-    public List<Role> getRoles() {
+    public Collection<Role> getRoles() {
         return roles;
     }
 
