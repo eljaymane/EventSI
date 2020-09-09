@@ -1,5 +1,7 @@
 package fr.miage.orleans.museeapi.controllers;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,15 +29,19 @@ public class RankController {
 
     @PostMapping("/addRank")
     public ResponseEntity<Rank> createRank(@RequestBody Rank rank){
-        List<Rank> existingRank = RankRepository.findByRankName(rank.getRankName());
-
+    	Collection<Rank> existingRank = new ArrayList<>();
+        existingRank = RankRepository.findByRankName(rank.getRankName());
+        
+        if(existingRank!= null) {
         if(existingRank.size() > 0) {
-            return new ResponseEntity<Rank>((Rank)null,HttpStatus.CONFLICT);
+           //Fail first
         } else {
             rankRepository.save(rank);
+            return new ResponseEntity<Rank>(rank,HttpStatus.CREATED);
+        }
         }
 
-        return new ResponseEntity<Rank>(rank,HttpStatus.CREATED);
+        return new ResponseEntity<Rank>((Rank)null,HttpStatus.CONFLICT);
     }
 
     //Read

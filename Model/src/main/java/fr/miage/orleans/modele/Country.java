@@ -14,7 +14,7 @@ public class Country {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String countryName;
-    @Pattern(regexp="(^$|[0-9]{3})")
+    //@Pattern(regexp="(^$|[0-9]{3})")
     private String phoneCode;
 
 
