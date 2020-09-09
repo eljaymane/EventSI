@@ -1,1 +1,13 @@
-<p>contests works!</p>
+<div *ngIf="finishedLoading" class = "page">
+    <div class="contests-box">
+        <div class="contest-card" *ngFor="let contest of contests">
+            <mat-card class ="card">
+                <mat-card-title>{{contest.contestName}}</mat-card-title>
+                <mat-card-subtitle>{{contest.prize.prizeName}}</mat-card-subtitle>
+            </mat-card>
+        </div>
+    </div>
+<div *ngIf="!finishedLoading" class="progress-spinner">
+    <mat-progress-spinner></mat-progress-spinner>
+</div>
+</div>

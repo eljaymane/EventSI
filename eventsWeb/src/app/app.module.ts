@@ -14,6 +14,9 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatListModule } from '@angular/material/list';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatCardModule } from '@angular/material/card';
+import { HttpClientModule } from '@angular/common/http';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent, data: { title: 'Sign in' } },
@@ -32,12 +35,15 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     MatSliderModule,
     MatIconModule,
     MatToolbarModule,
     MatListModule,
     MatSidenavModule,
-    MatButtonModule
+    MatButtonModule,
+    MatProgressSpinnerModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent],

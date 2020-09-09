@@ -1,13 +1,16 @@
 package fr.miage.orleans.modele;
 
 import java.util.Collection;
+import java.util.Set;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
@@ -27,27 +30,31 @@ public class User {
     @NotBlank
     private String phoneNumber;
     @OneToOne()
-    @JoinColumn(name ="id", referencedColumnName = "rankId")
+    @JoinColumn(name ="rankId")
     private Rank rank;
-    @JoinTable(name = "T_Users_Contests_Associations",
-			joinColumns = @JoinColumn (name = "user_id"),
-			inverseJoinColumns = @JoinColumn (name = "contest_id"))
-    private Collection<Contest> userContests;
+    @ManyToMany
+    private Set<Contest> contests;
 
 
     public User() {
     }
 
-    public User(long id, String username, Country country, String firstName, String lastName, String phoneNumber) {
-        this.id = id;
-        this.username = username;
-        this.country = country;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phoneNumber = phoneNumber;
-    }
+    public User(long id, String username, Country country, String firstName, String lastName,
+			@Pattern(regexp = "(^$|[0-9]{10})") @NotBlank String phoneNumber, Rank rank, Set<Contest> userContests) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.country = country;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.phoneNumber = phoneNumber;
+		this.rank = rank;
+		this.contests = userContests;
+	}
 
-    public long getId() {
+
+
+	public long getId() {
         return this.id;
     }
 
@@ -125,17 +132,6 @@ public class User {
         return this;
     }
 
-
-    public User(long id, String username, Country country, String firstName, String lastName, String phoneNumber, Rank rank) {
-        this.id = id;
-        this.username = username;
-        this.country = country;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phoneNumber = phoneNumber;
-        this.rank = rank;
-    }
-
     public Rank getRank() {
         return this.rank;
     }
@@ -148,6 +144,16 @@ public class User {
         this.rank = rank;
         return this;
     }
+
+	public Set<Contest> getUserContests() {
+		return contests;
+	}
+
+	public void setUserContests(Set<Contest> userContests) {
+		this.contests = userContests;
+	}
+    
+    
 
 
 
