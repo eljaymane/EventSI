@@ -22,7 +22,6 @@ public class User {
     @JsonIgnore
     private String password;
     @Column
-    @Email(message="{errors.invalid_email}")
     private String email;
     @ManyToMany(fetch = FetchType.EAGER,cascade=CascadeType.MERGE)
     @JoinTable(

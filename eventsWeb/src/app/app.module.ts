@@ -16,12 +16,18 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCardModule } from '@angular/material/card';
-import { HttpClientModule } from '@angular/common/http';
-
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { SignupComponent } from './signup/signup.component';
+import { AuthInterceptor } from 'src/services/auth.interceptor';
 const appRoutes: Routes = [
   { path: '', component: LoginComponent, data: { title: 'Sign in' } },
   { path: 'events', component: EventsComponent, data: { title: 'Events' } },
-  { path: 'contests', component: ContestsComponent, data: { title: 'Contests' } }
+  { path: 'contests', component: ContestsComponent, data: { title: 'Contests' } },
+  { path: 'login', component: LoginComponent, data: { title: 'Login' } },
+  { path: 'signup', component: SignupComponent, data: { title: 'SignUp' } }
 ];
 @NgModule({
   declarations: [
@@ -29,7 +35,8 @@ const appRoutes: Routes = [
     EventsComponent,
     LoginComponent,
     ContestsComponent,
-    NavigationComponent
+    NavigationComponent,
+    SignupComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
@@ -43,10 +50,21 @@ const appRoutes: Routes = [
     MatSidenavModule,
     MatButtonModule,
     MatProgressSpinnerModule,
-    MatCardModule
+    MatCardModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide : HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi   : true,
+    }
+  ],
   bootstrap: [AppComponent],
   exports: [RouterModule]
 })
 export class AppModule { }
+

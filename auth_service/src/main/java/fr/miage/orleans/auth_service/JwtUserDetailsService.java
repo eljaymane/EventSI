@@ -42,6 +42,7 @@ public UserDetails loadUserByUsername(String username) throws UsernameNotFoundEx
         User newUser = new User();
         newUser.setUsername(user.getUsername());
         newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
+        newUser.setEmail(user.getEmail());
        /* newUser.setPrenom(user.getPrenom());
         newUser.setNom(user.getNom());
         newUser.setEmail(user.getEmail());*/

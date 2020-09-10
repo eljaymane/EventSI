@@ -5,7 +5,9 @@ import fr.miage.orleans.auth_service.Entities.Role;
 import java.io.Serializable;
 import java.util.List;
 
-public class JwtRequest implements Serializable {	private static final long serialVersionUID = 5926468583005150707L;
+public class JwtRequest implements Serializable {	
+	
+	private static final long serialVersionUID = 5926468583005150707L;
 
     private String username;
     private String password;

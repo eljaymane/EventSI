@@ -5,10 +5,14 @@
       </button>
       <h1>Technocrates</h1>
       <span class="menu-spacer"></span>
-      <!-- <div>
-        <a mat-button [routerLink]="'/events'"> Events </a>
-        <a mat-button [routerLink]="'/contests'"> Contests </a>
-      </div> -->
+      <div *ngIf="!this.authService.isLoggedIn">
+          <a mat-button [routerLink]="'/signup'"> S'inscrire</a>
+      </div>
+       <div *ngIf="this.authService.isLoggedIn">
+        <a mat-button >{{ this.authService.username }}</a>
+        <a mat-button (click)="logout()"> Se déconnecter </a>
+        <a mat-button [routerLink]="'/user/profile'"> Profile </a> 
+       </div> 
     </mat-toolbar-row>
   
     <mat-toolbar-row>

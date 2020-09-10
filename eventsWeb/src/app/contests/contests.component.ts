@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ContestService } from './services/contest/contest.service';
 import { Contest } from '../model/contest.model';
+import { AuthService } from 'src/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-contests',
@@ -12,7 +14,9 @@ export class ContestsComponent implements OnInit {
   public contests: Array<Contest> = new Array<Contest>();
 
       constructor   (
-                      private contestService: ContestService
+                      private contestService: ContestService,
+                      private authService: AuthService,
+                      private router: Router,
 
                     ) 
                       { 
@@ -20,7 +24,12 @@ export class ContestsComponent implements OnInit {
                       }
 
 async ngOnInit()      {
-                          this.finishedLoading = await this.getAllContests();
+                          if(!this.authService.isLoggedIn){
+                            this.router.navigate(['/login']);
+                          } else {
+                            this.finishedLoading = await this.getAllContests();
+                          }
+                         
                       }
                 
 getAllContests() : Promise<boolean> 

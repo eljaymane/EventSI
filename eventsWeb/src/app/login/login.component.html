@@ -1,1 +1,20 @@
-<p>login works!</p>
+<div class="page">
+    <div class="form-container">
+        <form [formGroup]="userForm">
+            <mat-form-field class ="form-field">
+                <input matInput placeholder="Username" formControlName="username"
+                    class="form-control" />
+            </mat-form-field> <br>
+            <mat-form-field class ="form-field">
+                <input type="password" matInput placeholder="Mot de passe" formControlName="password"
+                    class="form-control" />
+            </mat-form-field> <br>
+            <div class="loginButton">
+                <button mat-raised-button color="primary" class="btn-block" (click)="onSubmit()" >
+                    Se connecter
+                </button>
+            </div>    
+            
+        </form>
+    </div>
+</div>

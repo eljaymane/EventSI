@@ -60,9 +60,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         // We don't need CSRF for this example
         httpSecurity.csrf().disable()
+        		.authorizeRequests().antMatchers("/contests").hasRole("USER")
                 // dont authenticate this particular request
-                .authorizeRequests().anyRequest().permitAll();
-                //.antMatchers("/oeuvres").hasRole("USER")
+                .anyRequest().permitAll();
+                
                 //.antMatchers(HttpMethod.DELETE).hasRole("ADMIN")
                 // all other requests need to be authenticated
                        // .anyRequest().hasRole("USER").and().
@@ -72,7 +73,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 //.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         // Add a filter to validate the tokens with every request
-        //httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+        httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
         httpSecurity.cors();
     }
 
