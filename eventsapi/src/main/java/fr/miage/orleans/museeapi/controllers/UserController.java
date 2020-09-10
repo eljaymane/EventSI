@@ -25,7 +25,7 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
-    @PostMapping("/addUser")
+    @PostMapping("/users")
     public ResponseEntity<User> createUser(@RequestBody User user){
         List<User> existingUser = userRepository.findByUsername(user.getUsername());
 
@@ -39,7 +39,7 @@ public class UserController {
     }
 
     //Read
-    @GetMapping("/User/{id}")
+    @GetMapping("/user/{id}")
     public ResponseEntity<User> getUser(@PathVariable long id) {
         if(userRepository.findById(id) != null){
             User user = userRepository.getOne(id);
@@ -59,7 +59,7 @@ public class UserController {
     }
 
     //Delete
-    @DeleteMapping("/User/{id}")
+    @DeleteMapping("/user/{id}")
     public ResponseEntity deleteUser(@PathVariable long id) {
         Optional<User> User = userRepository.findById(id);
         if(User.get() != null){

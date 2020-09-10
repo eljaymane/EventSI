@@ -1,6 +1,7 @@
 <div class="page">
     <div class="form-container">
         <form [formGroup]="userForm">
+            <div class="form-gauche">
             <mat-form-field class ="form-field">
                 <input matInput placeholder="Prénom" formControlName="firstName"
                     class="form-control" />
@@ -17,22 +18,29 @@
                     <input matInput placeholder="Numéro de téléphone" formControlName="phoneNumber"
                         class="form-control" />
                 </mat-form-field> <br>
-                <mat-form-field class ="form-field">
-                <input matInput placeholder="E-mail" formControlName="mailAddress"
-                    class="form-control" />
-            </mat-form-field> <br>
-            <mat-form-field class ="form-field">
-                <input matInput placeholder="Nom d'utilisateur" formControlName="username"
-                    class="form-control" />
-            </mat-form-field> <br>
-            <mat-form-field class ="form-field">
-                <input matInput type="password" placeholder="Mot de passe" formControlName="password"
-                    class="form-control" />
-            </mat-form-field> <br>
-            <mat-form-field class ="form-field">
-                <input matInput type="password" placeholder="Vérification" formControlName="passwordVerify"
-                    class="form-control" />
-            </mat-form-field> <br>
+                </div>
+                <div class="form-droite">
+                    <mat-form-field class ="form-field">
+                        <input matInput placeholder="E-mail" formControlName="mailAddress"
+                            class="form-control" />
+                    </mat-form-field> <br>
+                    <mat-form-field class ="form-field">
+                        <input matInput placeholder="Nom d'utilisateur" formControlName="username"
+                            class="form-control" />
+                    </mat-form-field> <br>
+                    <mat-form-field class ="form-field">
+                        <input matInput type="password" placeholder="Mot de passe" formControlName="password"
+                            class="form-control" />
+                    </mat-form-field> <br>
+                    <mat-form-field class ="form-field">
+                        <input matInput type="password" placeholder="Vérification" formControlName="passwordVerify"
+                            class="form-control" />
+                    </mat-form-field> <br>
+                </div>
+                <div class="submit-button">
+                <button mat-raised-button color='primary' (click)="onSubmit()" class="form-control">S'inscrire</button>
+                </div>
+            <br>
         </form>
     </div>
 </div>

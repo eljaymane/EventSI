@@ -9,5 +9,27 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 .form-container {
+    display:flex;
+    align-content: center;
+    flex-direction: row;
     margin-top : 80px;
+}
+
+.form-gauche {
+    display:inline-flex;
+    flex-direction: column;
+    align-self: flex-end;
+    margin-right: 100px
+}
+.form-droite {
+    display:inline-flex;
+    flex-direction: column;
+    align-content: center;
+    align-self: flex-start;
+
+}
+
+.submit-button {
+    display: flex;
+    justify-content: center;
 }

@@ -3,6 +3,7 @@ import { User } from '../model/user.model';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/services/auth.service';
 import { FormGroup, FormControl } from '@angular/forms';
+import { Rank } from '../model/rank.model';
 
 @Component({
   selector: 'app-signup',
@@ -34,14 +35,25 @@ export class SignupComponent implements OnInit {
 
                     }
 
+  onSubmit()        {
+                    var userValues = this.userForm.value;
+                      var user = new User(0,userValues.username,userValues.country
+                                  ,userValues.firstName,userValues.lastName
+                                  ,userValues.phoneNumber,new Rank(1,"Amateur",100),null);
+                      if(this.signUp(user)){
+
+                      }
+
+                    }
+
   signUp(user: User) : Promise<Boolean> 
                     {
                       return new Promise((resolve,reject) => {
                         this.authService.signUp(user).toPromise().then(response => {
+                          this.authService.logout();
                           resolve(true);
-                        }).catch(()=> {
+                        })
                           reject(false);
-                        });
                       });
                     }
 

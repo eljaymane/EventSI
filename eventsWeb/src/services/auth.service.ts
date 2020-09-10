@@ -14,7 +14,8 @@ export class AuthService {
   token;
   decodedToken;
   username;
-  private authUrl = "http://localhost:10002"
+  private authUrl = "http://localhost:10002";
+  private baseUrl = "http://localhost:10001"
 
   constructor   (
                   private http: HttpClient,
@@ -33,7 +34,7 @@ export class AuthService {
   
   signUp(user: User): Observable<User>
                   {
-                      return this.http.post<User>('/user',user);
+                      return this.http.post<User>(this.baseUrl + '/users',user);
                   }
 
   authenticate(username:string, password)  
