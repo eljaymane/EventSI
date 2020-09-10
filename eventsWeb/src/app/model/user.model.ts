@@ -4,14 +4,16 @@ import { Contest } from './contest.model';
 
 export class User {
     constructor(
-                    private id: number,
-                    private username: string,
-                    private country: Country,
-                    private firstName: string,
-                    private lastName: string,
-                    private phoneNumber: string,
-                    private rank: Rank,
-                    private contests:Array<Contest>
+                    public id: number,
+                    public username: string,
+                    public password: string,
+                    public email: string,
+                    public country: Country,
+                    public firstName: string,
+                    public lastName: string,
+                    public phoneNumber: string,
+                    public rank: Rank,
+                    public contests:Array<Contest>
                 )
                     { 
                         

@@ -22,6 +22,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String username;
+    private String password;
+    private String email;
     @ManyToOne() @JoinColumn(name = "countryId", referencedColumnName = "id")
     private Country country;
     private String firstName;
@@ -39,11 +41,13 @@ public class User {
     public User() {
     }
 
-    public User(long id, String username, Country country, String firstName, String lastName,
+    public User(long id, String username, String password, String email, Country country, String firstName, String lastName,
 			@Pattern(regexp = "(^$|[0-9]{10})") @NotBlank String phoneNumber, Rank rank, Set<Contest> userContests) {
 		super();
 		this.id = id;
 		this.username = username;
+		this.password = password;
+		this.email = email;
 		this.country = country;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -51,8 +55,36 @@ public class User {
 		this.rank = rank;
 		this.contests = userContests;
 	}
+    
+    
+    
+
+    
 
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public Set<Contest> getContests() {
+		return contests;
+	}
+
+	public void setContests(Set<Contest> contests) {
+		this.contests = contests;
+	}
 
 	public long getId() {
         return this.id;

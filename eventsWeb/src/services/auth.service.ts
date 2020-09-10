@@ -5,6 +5,7 @@ import { User } from 'src/app/model/user.model';
 import jwt_decode from "jwt-decode";
 import { Router } from '@angular/router';
 import { exit } from 'process';
+import { renderFlagCheckIfStmt } from '@angular/compiler/src/render3/view/template';
 
 @Injectable({
   providedIn: 'root'
@@ -32,10 +33,26 @@ export class AuthService {
                     this.redirectLogout();
                   }
   
-  signUp(user: User): Observable<User>
+  signUp(user: User): Promise<Boolean>
                   {
-                      return this.http.post<User>(this.baseUrl + '/users',user);
+                    return new Promise(async (resolve,reject) => {
+                      await this.register(user.username,user.password,user.email).toPromise().then(() => {
+                        this.http.post<User>(this.baseUrl + '/users',user);
+                      }).finally(() => {
+                        resolve(true);
+                      })
+                      reject(false);
+                    })
+                    
                   }
+  register(username:string,password:string,email:string){
+    var body = {
+      username: username,
+      password: password,
+      email: email
+    }
+    return this.http.post<any>(this.authUrl + '/register',body);
+  }
 
   authenticate(username:string, password)  
                   {

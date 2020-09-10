@@ -23,6 +23,7 @@ public class User {
     @Column
     @JsonIgnore
     private String password;
+    @Column String phoneNumber;
     @Column
     @Email(message="{errors.invalid_email}")
     private String email;
@@ -35,8 +36,24 @@ public class User {
 
     public User() {
     }
+    
 
-    public long getId() {
+    public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+
+	public void setRoles(Collection<Role> roles) {
+		this.roles = roles;
+	}
+
+
+	public long getId() {
         return id;
     }
 

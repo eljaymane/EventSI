@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import fr.miage.orleans.modele.User;
 import fr.miage.orleans.museeapi.dao.UserRepository;
 
@@ -24,7 +25,9 @@ import fr.miage.orleans.museeapi.dao.UserRepository;
 public class UserController {
     @Autowired
     private UserRepository userRepository;
-
+    private String authUrl = "http://localhost:10002";
+    
+    
     @PostMapping("/users")
     public ResponseEntity<User> createUser(@RequestBody User user){
         List<User> existingUser = userRepository.findByUsername(user.getUsername());
@@ -32,7 +35,9 @@ public class UserController {
         if(existingUser.size() > 0) {
             return new ResponseEntity<User>((User)null,HttpStatus.CONFLICT);
         } else {
-            userRepository.save(user);
+        	userRepository.save(user);
+        	//register(user.getUsername(),user.getPassword(),user.getEmail());
+            
         }
 
         return new ResponseEntity<User>(user,HttpStatus.CREATED);

@@ -35,26 +35,16 @@ export class SignupComponent implements OnInit {
 
                     }
 
-  onSubmit()        {
+  async onSubmit()        {
                     var userValues = this.userForm.value;
-                      var user = new User(0,userValues.username,userValues.country
+                      var user = new User(0,userValues.username, userValues.password, userValues.mailAddress,userValues.country
                                   ,userValues.firstName,userValues.lastName
                                   ,userValues.phoneNumber,new Rank(1,"Amateur",100),null);
-                      if(this.signUp(user)){
-
+                                  console.log(user)
+                      if(await this.authService.signUp(user)){
+                        this.authService.logout();
                       }
 
-                    }
-
-  signUp(user: User) : Promise<Boolean> 
-                    {
-                      return new Promise((resolve,reject) => {
-                        this.authService.signUp(user).toPromise().then(response => {
-                          this.authService.logout();
-                          resolve(true);
-                        })
-                          reject(false);
-                      });
                     }
 
 }
