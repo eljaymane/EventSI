@@ -1,4 +1,4 @@
-# Microservices pour la gestion d'un musée
+# Microservices pour la gestion d'évenements
 Le projet est composé de :
 - Un service d'authentification : (BDD: db-auth)
 - Un service gérant les données de l'application (BDD: db-events)
